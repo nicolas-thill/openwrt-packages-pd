@@ -39,7 +39,7 @@ endef
 
 MAKE_FLAGS += \
   OPT_CFLAGS="$(TARGET_CFLAGS)" \
-  prefix="$(PKG_INSTALL_DIR)/usr" \
+  prefix="/usr" \
 
 define Package/libpd/install
 	$(INSTALL_DIR) $(1)/usr/lib

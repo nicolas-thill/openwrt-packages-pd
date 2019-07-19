@@ -1,13 +1,41 @@
 --- a/Makefile
 +++ b/Makefile
-@@ -248,8 +248,8 @@ install:
+@@ -2,6 +2,7 @@ UNAME = $(shell uname)
+ SOLIB_PREFIX = lib
+ LIBPD_IMPLIB =
+ LIBPD_DEF =
++DESTDIR =
+ 
+ ifeq ($(UNAME), Darwin)  # Mac
+   SOLIB_EXT = dylib
+@@ -237,19 +238,19 @@ clobber: clean
+ 
+ # optional install headers & libs based on build type: UTIL=true and/or windows
+ install:
+-	install -d $(includedir)/libpd
+-	install -m 644 libpd_wrapper/z_libpd.h $(includedir)/libpd
+-	install -m 644 pure-data/src/m_pd.h $(includedir)/libpd
++	install -d $(DESTDIR)$(includedir)/libpd
++	install -m 644 libpd_wrapper/z_libpd.h $(DESTDIR)$(includedir)/libpd
++	install -m 644 pure-data/src/m_pd.h $(DESTDIR)$(includedir)/libpd
+ 	if [ -e libpd_wrapper/util/z_queued.o ]; then \
+-	    install -d $(includedir)/libpd/util; \
+-	    install -m 644 libpd_wrapper/util/z_print_util.h $(includedir)/libpd/util; \
+-	    install -m 644 libpd_wrapper/util/z_queued.h $(includedir)/libpd/util; \
+-		install -m 644 cpp/*hpp $(includedir)/libpd; \
++	    install -d $(DESTDIR)$(includedir)/libpd/util; \
++	    install -m 644 libpd_wrapper/util/z_print_util.h $(DESTDIR)$(includedir)/libpd/util; \
++	    install -m 644 libpd_wrapper/util/z_queued.h $(DESTDIR)$(includedir)/libpd/util; \
++		install -m 644 cpp/*hpp $(DESTDIR)$(includedir)/libpd; \
  	fi
- 	install -d $(libdir)
- 	install -m 755 $(LIBPD) $(libdir)
+-	install -d $(libdir)
+-	install -m 755 $(LIBPD) $(libdir)
 -	if [ -e $(LIBPD_IMPLIB) ]; then install -m 755 $(LIBPD_IMPLIB) $(libdir); fi
 -	if [ -e $(LIBPD_DEF) ]; then install -m 755 $(LIBPD_DEF) $(libdir); fi
-+	if [ -n "$(LIBPD_IMPLIB)" -a -e $(LIBPD_IMPLIB) ]; then install -m 755 $(LIBPD_IMPLIB) $(libdir); fi
-+	if [ -n "$(LIBPD_DEF)" -a -e $(LIBPD_DEF) ]; then install -m 755 $(LIBPD_DEF) $(libdir); fi
++	install -d $(DESTDIR)$(libdir)
++	install -m 755 $(LIBPD) $(DESTDIR)$(libdir)
++	if [ -n "$(LIBPD_IMPLIB)" -a -e $(LIBPD_IMPLIB) ]; then install -m 755 $(LIBPD_IMPLIB) $(DESTDIR)$(libdir); fi
++	if [ -n "$(LIBPD_DEF)" -a -e $(LIBPD_DEF) ]; then install -m 755 $(LIBPD_DEF) $(DESTDIR)$(libdir); fi
  
  uninstall:
  	rm -rf $(includedir)/libpd
