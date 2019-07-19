@@ -1,2 +1,3 @@
 # openwrt-packages-pd
-OpenWrt packages - Pure Data (https://puredata.info/)
+
+A collection of packages for experimenting with [Pure Data](https://puredata.info/) on [OpenWrt](https://openwrt.org/).
