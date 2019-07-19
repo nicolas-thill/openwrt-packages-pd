@@ -62,6 +62,13 @@ Hooks/Compile/Post += Build/Compile/Samples
 
 endif
 
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr/include
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/libpd $(1)/usr/include/
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpd.so $(1)/usr/lib/
+endef
+
 define Package/libpd/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libpd.so $(1)/usr/lib/
