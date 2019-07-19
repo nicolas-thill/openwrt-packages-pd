@@ -40,6 +40,27 @@ endef
 MAKE_FLAGS += \
   OPT_CFLAGS="$(TARGET_CFLAGS)" \
   prefix="/usr" \
+  UNAME="Linux" \
+
+ifneq ($(CONFIG_LIBPD_SAMPLES),)
+
+SAMPLES:= \
+	./samples/c/pdtest/ \
+	./samples/c/pdtest_multi/ \
+	./samples/c/pdtest_thread/ \
+	./samples/cpp/pdtest/ \
+	./samples/cpp/pdtest_rtaudio/ \
+
+define Build/Compile/Samples
+	( cd $(PKG_BUILD_DIR) ; \
+		for sample in $(SAMPLES); do \
+			$(MAKE_VARS) $(MAKE) $(MAKE_FLAGS) -C $$$$sample ; \
+		done \
+	)
+endef
+Hooks/Compile/Post += Build/Compile/Samples
+
+endif
 
 define Package/libpd/install
 	$(INSTALL_DIR) $(1)/usr/lib

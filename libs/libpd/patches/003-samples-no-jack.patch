@@ -1,0 +1,26 @@
+--- a/samples/cpp/pdtest_freeverb/Makefile
++++ b/samples/cpp/pdtest_freeverb/Makefile
+@@ -17,8 +17,8 @@ else
+   else # assume Linux
+     SOLIB_EXT = so
+     PLATFORM = linux
+-    CXXFLAGS = -D__UNIX_JACK__ -D__LINUX_ALSA__
+-    AUDIO_API = -ljack -lasound -pthread
++    CXXFLAGS = -D__LINUX_ALSA__
++    AUDIO_API = -lasound -pthread
+   endif
+ endif
+ 
+--- a/samples/cpp/pdtest_rtaudio/Makefile
++++ b/samples/cpp/pdtest_rtaudio/Makefile
+@@ -27,8 +27,8 @@ else
+   else  # assume Linux
+     SOLIB_EXT = so
+     PLATFORM = linux
+-    CXXFLAGS = -D__UNIX_JACK__ -D__LINUX_ALSA__
+-    AUDIO_API = -ljack -lasound -pthread
++    CXXFLAGS = -D__LINUX_ALSA__
++    AUDIO_API = -lasound -pthread
+   endif
+ endif
+ 

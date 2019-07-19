@@ -1,0 +1,104 @@
+--- a/samples/c/pdtest/Makefile
++++ b/samples/c/pdtest/Makefile
+@@ -26,8 +26,8 @@ CFLAGS = -I$(LIBPD_DIR)/pure-data/src -I
+ .PHONY: clean clobber
+ 
+ $(TARGET): ${SRC_FILES:.c=.o} $(LIBPD)
+-	gcc -o $(TARGET) $^ $(LIBPD)
+-	if [ $(PLATFORM) == "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
++	$(CC) -o $(TARGET) $^ $(LIBPD)
++	if [ "$(PLATFORM)" = "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
+ 
+ $(LIBPD):
+ 	cd $(LIBPD_DIR) && make
+--- a/samples/c/pdtest_gui/Makefile
++++ b/samples/c/pdtest_gui/Makefile
+@@ -27,8 +27,8 @@ CFLAGS = -I$(LIBPD_DIR)/pure-data/src -I
+ .PHONY: clean clobber
+ 
+ $(TARGET): ${SRC_FILES:.c=.o} $(LIBPD)
+-	gcc -o $(TARGET) $^ $(LIBPD) $(LDFLAGS)
+-	if [ $(PLATFORM) == "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
++	$(CC) -o $(TARGET) $^ $(LIBPD) $(LDFLAGS)
++	if [ "$(PLATFORM)" = "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
+ 
+ $(LIBPD):
+ 	cd $(LIBPD_DIR) && make ADDITIONAL_CFLAGS=-DPDINSTANCE
+--- a/samples/c/pdtest_multi/Makefile
++++ b/samples/c/pdtest_multi/Makefile
+@@ -26,8 +26,8 @@ CFLAGS = -I$(LIBPD_DIR)/pure-data/src -I
+ .PHONY: clean clobber
+ 
+ $(TARGET): ${SRC_FILES:.c=.o} $(LIBPD)
+-	gcc -o $(TARGET) $^ $(LIBPD) $(LDFLAGS)
+-	if [ $(PLATFORM) == "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
++	$(CC) -o $(TARGET) $^ $(LIBPD) $(LDFLAGS)
++	if [ "$(PLATFORM)" = "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
+ 
+ $(LIBPD):
+ 	cd ../../.. && make MULTI=true
+--- a/samples/c/pdtest_thread/Makefile
++++ b/samples/c/pdtest_thread/Makefile
+@@ -27,8 +27,8 @@ CFLAGS = -I$(LIBPD_DIR)/pure-data/src -I
+ .PHONY: clean clobber
+ 
+ $(TARGET): ${SRC_FILES:.c=.o} $(LIBPD)
+-	gcc -o $(TARGET) $^ $(LIBPD) $(LDFLAGS)
+-	if [ $(PLATFORM) == "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
++	$(CC) -o $(TARGET) $^ $(LIBPD) $(LDFLAGS)
++	if [ "$(PLATFORM)" = "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
+ 
+ $(LIBPD):
+ 	cd ../../.. && make MULTI=true
+--- a/samples/cpp/pdtest/Makefile
++++ b/samples/cpp/pdtest/Makefile
+@@ -30,8 +30,8 @@ CXXFLAGS += -I$(LIBPD_DIR)/pure-data/src
+ .PHONY: clean clobber
+ 
+ $(TARGET): ${SRC_FILES:.cpp=.o} $(LIBPD)
+-	g++ -o $(TARGET) $^ $(LIBPD)
+-	if [ $(PLATFORM) == "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
++	$(CXX) -o $(TARGET) $^ $(LIBPD)
++	if [ "$(PLATFORM)" = "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
+ 
+ $(LIBPD):
+ 	cd $(LIBPD_DIR) && make UTIL=true EXTRA=true
+--- a/samples/cpp/pdtest_freeverb/Makefile
++++ b/samples/cpp/pdtest_freeverb/Makefile
+@@ -37,8 +37,8 @@ CXXFLAGS += $(CFLAGS) -std=c++11 -DLIBPD
+ .PHONY: clean clobber
+ 
+ $(TARGET): ${SRC_FILES:.cpp=.o} ${EXT_FILES:.c=.o} $(LIBPD)
+-	g++ -o $(TARGET) $^ $(CXXFLAGS) $(LIBPD) $(AUDIO_API)
+-	if [ $(PLATFORM) == "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
++	$(CXX) -o $(TARGET) $^ $(CXXFLAGS) $(LIBPD) $(AUDIO_API)
++	if [ "$(PLATFORM)" = "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
+ 
+ $(LIBPD):
+ 	cd $(LIBPD_DIR) && make UTIL=true EXTRA=true
+--- a/samples/cpp/pdtest_jack/Makefile
++++ b/samples/cpp/pdtest_jack/Makefile
+@@ -39,8 +39,8 @@ CXXFLAGS = -I$(LIBPD_DIR)/pure-data/src
+ .PHONY: clean clobber
+ 
+ $(TARGET): ${SRC_FILES:.cpp=.o} $(LIBPD)
+-	g++ -o $(TARGET) $^ $(LIBPD) -ljack
+-	if [ $(PLATFORM) == "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
++	$(CXX) -o $(TARGET) $^ $(LIBPD) -ljack
++	if [ "$(PLATFORM)" = "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
+ 
+ $(LIBPD):
+ 	cd $(LIBPD_DIR) && make UTIL=true EXTRA=true
+--- a/samples/cpp/pdtest_rtaudio/Makefile
++++ b/samples/cpp/pdtest_rtaudio/Makefile
+@@ -45,8 +45,8 @@ CXXFLAGS += -I$(LIBPD_DIR)/pure-data/src
+ .PHONY: clean clobber
+ 
+ $(TARGET): ${SRC_FILES:.cpp=.o} $(LIBPD)
+-	g++ -o $(TARGET) $^ $(LIBPD) $(AUDIO_API)
+-	if [ $(PLATFORM) == "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
++	$(CXX) -o $(TARGET) $^ $(LIBPD) $(AUDIO_API)
++	if [ "$(PLATFORM)" = "mac" ]; then mkdir -p ./libs && cp $(LIBPD) ./libs; fi
+ 
+ $(LIBPD):
+ 	cd $(LIBPD_DIR) && make UTIL=true EXTRA=true
