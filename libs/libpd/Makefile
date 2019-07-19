@@ -30,11 +30,16 @@ define Package/libpd
   SECTION:=sound
   CATEGORY:=Sound
   DEPENDS:=
-  TITLE:=LibPD
+  TITLE:=Pure Data computer music system as an embeddable audio synthesis library
+  URL:=http://libpd.cc/
 endef
 
 define Package/libpd/description
-  LibPD
+  libpd takes the power of one of the world’s most powerful, most
+  widely-used environments for making original sound and music
+  creations, and lets you put it anywhere.
+  It’s free, open source, and can run on a wide variety of devices from
+  phones to computers.
 endef
 
 MAKE_FLAGS += \
